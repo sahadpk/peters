@@ -747,11 +747,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-5">
-              <form
-                class="form-horizontal contact-form"
-                id="contact-form"
-                role="form"
-              >
+              <form class="form-horizontal contact-form" id="contact-form">
                 <fieldset>
                   <!-- Form Name -->
                   <legend>Contact Form</legend>
@@ -762,8 +758,8 @@
                     ></label>
                     <div class="media-body">
                       <input
-                        id="form-name"
-                        name="textinput"
+                        id="name"
+                        name="name"
                         placeholder="Name"
                         class="form-control input-md"
                         type="text"
@@ -780,8 +776,8 @@
                     ></label>
                     <div class="media-body">
                       <input
-                        id="form-email"
-                        name="textinput"
+                        id="email"
+                        name="email"
                         placeholder="E-mail"
                         class="form-control input-md"
                         type="text"
@@ -798,8 +794,8 @@
                     ></label>
                     <div class="media-body">
                       <input
-                        id="form-phone"
-                        name="textinput"
+                        id="phone"
+                        name="phone"
                         placeholder="Phone"
                         class="form-control input-md"
                         type="text"
@@ -819,7 +815,7 @@
                     <div class="media-body">
                       <textarea
                         class="textarea form-control"
-                        id="form-message"
+                        id="message"
                         name="textarea"
                         placeholder="Message"
                         data-error="Message field is required"
@@ -932,7 +928,8 @@
                   <div class="corporate-address">
                     <ul>
                       <li>
-                        <i class="fa fa-map" aria-hidden="true"></i>High Road,Pallikulam,Thrissur
+                        <i class="fa fa-map" aria-hidden="true"></i>High
+                        Road,Pallikulam,Thrissur
                       </li>
                       <li>
                         <i class="fa fa-phone" aria-hidden="true"></i
@@ -1024,5 +1021,34 @@
         ============================================ -->
     <script src="./js/main.js"></script>
     <script src="./index.js"></script>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        // https://dashboard.emailjs.com/admin/account
+        emailjs.init("wK02A038AfYZlfhLn");
+      })();
+    </script>
+    <script type="text/javascript">
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // generate a five digit number for the contact_number variable
+          // these IDs from the previous steps
+          emailjs.sendForm("service_vxje38f", "template_0uil3cq", this).then(
+            function () {
+              console.log("SUCCESS!");
+            },
+            function (error) {
+              console.log("FAILED...", error);
+            }
+          );
+        });
+    </script>
   </body>
 </html>
